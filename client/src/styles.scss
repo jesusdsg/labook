@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;400;500&display=swap");
+
+$light-bg : #edf0f3;
+$content: #fff;
+$title: #818181;
+$text: #3d3d3d;
+$border: #e7e7e7;
+$input-bg: #ececec;
+
+$green-color: #47e290;
+$error-color: #8b3232;
+
+$main-header-width: 210px;
+$border-radius: 15px;
+$box-shadow: 0 1px 10px rgba(0, 0, 0, 0.055),
+0 1px 2px rgba(0, 0, 0, 0.068);
+
+$mobile-width: 768px;
+
+
+//General styles
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
+  background-color: $light-bg;
+  transition: all 0.4s;
+  color: $text;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+}
+
+span,
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+a,
+button {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}
+
+
+button,
+input {
+  border: none;
+}
+
+#logo {
+  margin: 0;
+  height: 50px;
+}
+
+#home-poster {
+  margin-top: 2.5rem;
+  width: 300px;
+  height: auto;
+}
+
+//Displays
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-inline{
+  display:flex-inline;
+}
+
+.auto {
+  margin: auto !important;
+}
+
+.centered {
+  text-align: center;
+  align-items: center;
+}
+
+.m-r {
+  margin-right: 1rem;
+}
+
+.m-l {
+  margin-left: 1rem;
+}
+
+//Form Styles - inputs - buttons
+.form-group-inline {
+  display: flex;
+}
+
+.form-control {
+  font-size: 14px;
+  padding: 10px 15px;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: $border-radius;
+  //background-color: $input-bg;
+  border: 1px solid $border;
+
+  &:hover {
+    background-color: rgba($input-bg, 0.10);
+  }
+
+  &::placeholder {
+    color: rgba($text, 0.5);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.form-btn {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  padding: 12px 18px;
+  color: #fff;
+  background-color: $green-color;
+  border-radius: $border-radius;
+  font-size: 16px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  background-size: 300% 100%;
+  &:hover {
+    background-image: linear-gradient(to right, $green-color, #40e495, #30dd8a, #2bb673);
+    background-position: 100% 0;
+    -o-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+}
+
+.form-info {
+  font-size: 14px;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+.green {
+  color: $green-color;
+}
+
+:checked {
+  color: $green-color;
+}
+
+.form-info__container {
+  display:flex;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-info__text {
+  font-family: 'Roboto', sans-serif;
+  color: $text;
+}
+
+//Custom checkbox 
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox]+label:before {
+  content: "\2714";
+  border: 0.1em solid $border;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.2rem;
+  padding-left: 0.1em;
+  padding-bottom: 1em;
+  margin-right: 0.5em;
+  vertical-align: top;
+  color: transparent;
+  transition: .2s;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px
+}
+
+input[type=checkbox]+label:active:before {
+  transform: scale(0);
+  
+}
+
+input[type=checkbox]:checked+label:before {
+  background-color: $green-color;
+  border-color: $green-color;
+  color: #fff;
+}
+
+input[type=checkbox]:disabled+label:before {
+  border-color: #aaa;
+}
+
+input[type=checkbox]:checked:disabled+label:before {
+  background-color: #bfb;
+  border-color: #bfb;
+}
+
+//Home styles
+.home-header {
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    overflow: hidden;
+  }
+
+  li {
+    float: right;
+  }
+
+  li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: $title;
+  }
+
+  li a:hover {
+    color: rgba($title, 0.9);
+    ;
+  }
+
+}
+
+.home-content {
+  padding: 40px;
+  margin: auto;
+  width: 400px;
+  margin-top: 5rem;
+  border: 1px solid $border;
+  border-radius: $border-radius;
+  border-top: 2px solid $green-color;
+  background-color: $content;
+
+}
+
+
+
+
+
+@media screen and (max-width: $mobile-width) {
+  .home-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .home-content {
+    width: 95%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+  

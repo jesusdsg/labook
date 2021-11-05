@@ -1,0 +1,36 @@
+<div class="home-content centered">
+  <form>
+    <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
+    <div class="form-group">
+      <input
+        [(ngModel)]="user.username"
+        type="text"
+        name="username"
+        class="form-control"
+        id="username"
+        placeholder="Username"
+      />
+      <input
+        [(ngModel)]="user.password"
+        type="password"
+        name="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-info__container">
+      <div style="width: 40%">
+        <input type="checkbox" id="remember" name="remember" value="remember" />
+        <label for="remember">Remember</label>
+      </div>
+
+      <div style="width: 60%">
+        <a href="#" class="bold green" style="padding-top: 1rem">
+          Forget password?
+        </a>
+      </div>
+    </div>
+    <div><button type="submit" class="form-btn" (click)="login()">Login</button></div>
+  </form>
+</div>
