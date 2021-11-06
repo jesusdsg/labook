@@ -8,7 +8,7 @@ $border: #e7e7e7;
 $input-bg: #ececec;
 
 $green-color: #47e290;
-$error-color: #8b3232;
+$error-color: #d93025;
 
 $main-header-width: 210px;
 $border-radius: 15px;
@@ -47,6 +47,10 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 ul {
@@ -100,6 +104,30 @@ input {
   height: auto;
 }
 
+
+h4 {
+  display: flex;
+  flex-direction: row;
+  color: rgba($title, 0.6);
+}
+
+h4:before,
+h4:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+}
+
+h4:before {
+  margin-right: 10px
+}
+
+h4:after {
+  margin-left: 10px
+}
+
+
 //Displays
 .flex {
   display: flex;
@@ -117,6 +145,14 @@ input {
 .centered {
   text-align: center;
   align-items: center;
+}
+
+.text-error {
+  color: $error-color;
+}
+
+.outline-error {
+  outline: 1px solid $error-color;
 }
 
 .m-r {
@@ -180,6 +216,14 @@ input {
   font-size: 14px;
   margin: auto;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.m-t-1 {
+  margin-top: 1rem;
+}
+
+.m-b-1 {
   margin-bottom: 1rem;
 }
 
@@ -293,7 +337,7 @@ input[type=checkbox]:checked:disabled+label:before {
   padding: 40px;
   margin: auto;
   width: 400px;
-  margin-top: 5rem;
+  margin-top: 2rem;
   border: 1px solid $border;
   border-radius: $border-radius;
   border-top: 2px solid $green-color;
@@ -316,5 +360,10 @@ input[type=checkbox]:checked:disabled+label:before {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
   }
+
+  .form-group-inline {
+    flex-direction: column;
+  }
+
 }
   

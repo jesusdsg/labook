@@ -1,1 +1,132 @@
-<p>sigup works!</p>
+<div class="home-content centered">
+  <form [formGroup]="userForm" (ngSubmit)="signin()">
+    <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
+    <div class="form-group">
+      <div class="m-b-1 m-t-1">
+        <h4>Sign in</h4>
+      </div>
+      <div class="form-group-inline">
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('username')?.hasError('required') &&
+              userForm.get('username')?.touched
+          }"
+          formControlName="username"
+          type="text"
+          name="username"
+          class="form-control m-r"
+          id="username"
+          placeholder="Username"
+        />
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('email')?.hasError('required') &&
+              userForm.get('email')?.touched
+          }"
+          formControlName="email"
+          type="email"
+          name="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+        />
+      </div>
+
+      <div class="form-group-inline">
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('password')?.hasError('required') &&
+              userForm.get('password')?.touched
+          }"
+          formControlName="password"
+          type="password"
+          name="password"
+          class="form-control m-r"
+          id="password"
+          placeholder="Password"
+        />
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('confirm')?.hasError('required') &&
+              userForm.get('confirm')?.touched
+          }"
+          formControlName="confirm"
+          type="password"
+          name="confirm"
+          class="form-control"
+          id="confirm"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group-inline">
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('firstname')?.hasError('required') &&
+              userForm.get('firstname')?.touched
+          }"
+          formControlName="firstname"
+          type="text"
+          name="firstname"
+          class="form-control m-r"
+          id="firstname"
+          placeholder="First Name"
+        />
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('lastname')?.hasError('required') &&
+              userForm.get('lastname')?.touched
+          }"
+          formControlName="lastname"
+          type="text"
+          name="lastname"
+          class="form-control"
+          id="lastname"
+          placeholder="Last Name"
+        />
+      </div>
+      <div class="form-group-inline">
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('address')?.hasError('required') &&
+              userForm.get('address')?.touched
+          }"
+          formControlName="address"
+          type="text"
+          name="address"
+          class="form-control m-r"
+          id="address"
+          placeholder="Address"
+        />
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('phone')?.hasError('required') &&
+              userForm.get('phone')?.touched
+          }"
+          formControlName="phone"
+          type="text"
+          name="phone"
+          class="form-control"
+          id="phone"
+          placeholder="Phone"
+        />
+      </div>
+    </div>
+    <div class="form-info__container">
+      <div class="centered" style="width: 100%;">
+          <span>Already have an account?<a routerLink="/login" class="bold green pointer" style="padding-top: 1rem">
+          Login
+        </a></span>
+        
+      </div>
+    </div>
+    <div><button type="submit" class="form-btn">Signin</button></div>
+  </form>
+</div>

@@ -1,9 +1,13 @@
 <div class="home-content centered">
-  <form>
+  <form [formGroup]="userForm" (ngSubmit)="login()">
     <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
     <div class="form-group">
+      <div class="m-b-1 m-t-1">
+        <h4>Login</h4>
+      </div>
       <input
-        [(ngModel)]="user.username"
+        [ngClass]="{'outline-error' : userForm.get('username')?.hasError('required') && userForm.get('username')?.touched}"
+        formControlName="username"
         type="text"
         name="username"
         class="form-control"
@@ -11,7 +15,8 @@
         placeholder="Username"
       />
       <input
-        [(ngModel)]="user.password"
+      [ngClass]="{'outline-error' : userForm.get('password')?.hasError('required') && userForm.get('password')?.touched}"
+        formControlName="password"
         type="password"
         name="password"
         class="form-control"
@@ -31,6 +36,6 @@
         </a>
       </div>
     </div>
-    <div><button type="submit" class="form-btn" (click)="login()">Login</button></div>
+    <div><button type="submit" class="form-btn">Login</button></div>
   </form>
 </div>
