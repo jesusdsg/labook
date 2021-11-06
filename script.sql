@@ -12,8 +12,8 @@ create table users (
 	username varchar(50) default null UNIQUE,
     password varchar(150) default null, //For hashes
     email varchar(50) default null UNIQUE,
-    first_name varchar(50),
-    last_name varchar(50),
+    firstname varchar(50),
+    lastname varchar(50),
     address varchar(20),
     phone varchar(20),
     rol_id int,

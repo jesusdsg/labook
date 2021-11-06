@@ -12,28 +12,48 @@ export class SigupComponent implements OnInit {
 
   userForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder)  {
+  errorText: string = "";
+
+  status: boolean = false;
+
+
+  ConfirmedValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    }
+  }
+
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
 
     //Initializing form
     this.userForm = this.fb.group({
       //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), 
-      username: ['', [Validators.required, Validators.maxLength(10)]],
-      password: ['', [Validators.required, Validators.maxLength(10)]],
-      email: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
-      firstname: ['', [Validators.required, Validators.maxLength(10)]],
-      lastname: ['', [Validators.required, Validators.maxLength(10)]],
-      address: ['', [Validators.required, Validators.maxLength(10)]],
-      phone: ['', [Validators.required, Validators.maxLength(10)]],
-    });
-
-    
-
-   }
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required]],
+      confirm: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      address: ['', [Validators.required,]],
+      phone: ['', [Validators.required]],
+    }
+    );
+  }
 
   ngOnInit(): void {
   }
 
-  signin() {
+
+  signup() {
     //Getting form values
     const user = {
       username: this.userForm.get('username')?.value,
@@ -44,8 +64,31 @@ export class SigupComponent implements OnInit {
       address: this.userForm.get('address')?.value,
       phone: this.userForm.get('phone')?.value
     }
+    if (this.userForm.valid) {
+      console.log(user, 'Registered');
+      this.errorText = "";
+      this.authService.signup(user).subscribe(
+        (res: any) => {
+          console.log(res);
+          if (res.status) {
+            this.status = res.status;
+          }
+        },
+        (err) => {
+          console.log(err);
+          this.status = false;
+          this.errorText = err.error.message;
+        }
+      )
+    //this.status = "registered";
+    //this.router.navigate(['/done', this.status]);
+    }
+    else {
+      console.log(user, 'Not Registered');
+      this.errorText = "Please fill all the fields";
+    }
 
-    console.log(user);
+
   }
 
 }

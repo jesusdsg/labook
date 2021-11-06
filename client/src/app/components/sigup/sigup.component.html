@@ -1,11 +1,13 @@
-<div class="home-content centered">
-  <form [formGroup]="userForm" (ngSubmit)="signin()">
+<div class="home-content centered" [ngClass]="status ? 'hidden' : 'visible'">
+  <form [formGroup]="userForm" (ngSubmit)="signup()">
     <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
     <div class="form-group">
       <div class="m-b-1 m-t-1">
         <h4>Sign in</h4>
       </div>
+      <span class="text-error block m-t-1 bold">{{errorText}}</span>
       <div class="form-group-inline">
+        
         <input
           [ngClass]="{
             'outline-error':
@@ -120,13 +122,37 @@
       </div>
     </div>
     <div class="form-info__container">
-      <div class="centered" style="width: 100%;">
-          <span>Already have an account?<a routerLink="/login" class="bold green pointer" style="padding-top: 1rem">
-          Login
-        </a></span>
-        
+      <div class="centered" style="width: 100%">
+        <span
+          >Already have an account?<a
+            routerLink="/login"
+            class="bold green pointer"
+            style="padding-top: 1rem"
+          >
+            Login
+          </a></span
+        >
       </div>
     </div>
     <div><button type="submit" class="form-btn">Signin</button></div>
   </form>
+</div>
+
+<div class="home-content centered" [ngClass]="status ? 'visible' : 'hidden'">
+    <div>
+          <h1>Congrats!</h1> <img src="../../../../assets/done.svg" id="home-poster" alt="home-image" />
+          <br />
+          <div class="m-t-1">
+              <p>
+            You now have an account, please log in to start discovering Labook. 
+          </p>
+          </div>
+          <div class="centered m-t-1" style="width: 100%;">
+          <span>So... Let's start<a routerLink="/login" class="bold green pointer" style="padding-top: 1rem">
+          Login
+        </a></span>
+        
+      </div>
+         
+        </div>
 </div>

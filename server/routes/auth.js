@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const mysqlConnection = require("../connection/database");
+const mysql = require("../connection/database");
+const helpers = require("../lib/helpers");
 
 const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
-  mysqlConnection.query("SELECT * FROM users", (err, rows, fields) => {
+  mysql.query("SELECT * FROM users", (err, rows, fields) => {
     if (!err) {
       res.json(rows);
     } else {
@@ -18,28 +19,41 @@ router.post("/test", verifyToken, (req, res) => {
   res.json("test");
 });
 
-router.post("/signin", (req, res) => {
+//Sign in
+router.post("/signin", async (req, res) => {
   const { username, password } = req.body;
-  console.log('Body', req.body);
-  mysqlConnection.query(
+  mysql.query(
     "SELECT * FROM users where username=? OR email=?",
     [username, username],
-    (err, rows, fields) => {
+    async (err, rows, fields) => {
       if (!err) {
         if (rows.length > 0) {
-          if (rows[0].password === password) {
-            const token = jwt.sign({ id: rows[0].id, username: rows[0].username, rol_id: rows[0].rol_id }, process.env.JWT_KEY, {
-              expiresIn: "1h",
-            });
+          const match = await helpers.matchPassword(password, rows[0].password);
+          if (match) {
+            const token = jwt.sign(
+              {
+                id: rows[0].id,
+                username: rows[0].username,
+                rol_id: rows[0].rol_id,
+              },
+              process.env.JWT_KEY,
+              {
+                expiresIn: "1h",
+              }
+            );
             res.json({
               token: token,
-              user: rows[0],
+              user: {
+                username: rows[0].username,
+                rol: rows[0].rol_id,
+                name: rows[0].firstname,
+              },
             });
           } else {
-            res.status(401).json("Wrong password");
+            res.status(401).json({ msg: "Your Password is incorrect" });
           }
         } else {
-          res.json("Wrong Username / Password combination!");
+          res.json({ ms: "Wrong Username / Password combination!" });
         }
       } else {
         console.log("Ups", err);
@@ -48,6 +62,7 @@ router.post("/signin", (req, res) => {
   );
 });
 
+//Checking the Token
 function verifyToken(req, res, next) {
   if (!req.headers.authorization) return res.status(401).json("Unauthorized");
   const token = req.headers.authorization.substr(7);
@@ -60,5 +75,44 @@ function verifyToken(req, res, next) {
     res.status(401).json("Empty token");
   }
 }
+
+//Sign up
+router.post("/signup", async (req, res) => {
+  const user = ({
+    username,
+    password,
+    email,
+    firstname,
+    lastname,
+    address,
+    phone,
+  } = req.body);
+  const hash = await helpers.encryptPassword(user.password); //Encryting password
+  mysql.query(
+    "SELECT * FROM users where username=? OR email=?",
+    [username, email],
+    (err, rows, fields) => {
+      if (!err) {
+        if (rows.length > 0) {
+          res.json({msg: "User already exists"});
+        } else {
+          mysql.query(
+            "INSERT INTO users (username, password, email, firstname, lastname, address, phone, rol_id) VALUES (?,?,?,?,?,?,?,?)",
+            [username, hash, email, firstname, lastname, address, phone, 2],
+            async (err, rows, fields) => {
+              if (!err) {
+                res.json({ msg: "User created", status: true });
+              } else {
+                console.log(err);
+              }
+            }
+          );
+        }
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
 
 module.exports = router;

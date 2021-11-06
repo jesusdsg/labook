@@ -12,13 +12,15 @@ export class LoginComponent implements OnInit {
 
   userForm: FormGroup;
 
+  errorText = "";
+
   constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
     
     //Initializing form
     this.userForm = this.fb.group({
       //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), 
-      username: ['', [Validators.required, Validators.maxLength(10)]],
-      password: ['', [Validators.required, Validators.maxLength(10)]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
 
   }
@@ -38,11 +40,18 @@ export class LoginComponent implements OnInit {
       this.authService.login(user).subscribe(
         (res: any) => {
           //Saving token
-          localStorage.setItem('token', res.token);
-          this.router.navigate(['/admin']);
+          if(res.token) {
+            localStorage.setItem('token', res.token);
+            this.router.navigate(['/admin']);
+          }
+          else {
+            this.errorText = "Invalid Username or Password.";
+          }
+         
         },
         (err) => {
-          console.log('error', err);
+          //console.log('error', err);
+          this.errorText = err.error.msg;
         }
       );
     }

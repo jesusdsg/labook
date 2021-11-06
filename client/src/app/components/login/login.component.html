@@ -5,6 +5,7 @@
       <div class="m-b-1 m-t-1">
         <h4>Login</h4>
       </div>
+      <span class="text-error block m-t-1 bold">{{errorText}}</span>
       <input
         [ngClass]="{'outline-error' : userForm.get('username')?.hasError('required') && userForm.get('username')?.touched}"
         formControlName="username"
@@ -24,6 +25,8 @@
         placeholder="Password"
       />
     </div>
+    
+        
     <div class="form-info__container">
       <div style="width: 40%">
         <input type="checkbox" id="remember" name="remember" value="remember" />

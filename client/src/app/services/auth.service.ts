@@ -16,6 +16,12 @@ export class AuthService {
     return this.http.post(`${this.uri}/auth/signin`, user);
   }
 
+  signup(user: {}) {
+    //Sending user to server
+    return this.http.post(`${this.uri}/auth/signup`, user);
+  }
+
+
   isAuth(): boolean {
     //Checking if user is authenticated
     const token = localStorage.getItem('token');
