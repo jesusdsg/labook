@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import decode from 'jwt-decode';
 
 @Component({
   selector: 'header',
@@ -7,21 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  isLight: boolean = true;
+  isAuth: boolean = false;
+  username: string = '';
 
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService) {
+
+  }
 
   ngOnInit(): void {
-  }
+    type DecodedToken = {
+      id: number;
+      username: string;
+      rol_id: number;
+    }
+    const token = localStorage.getItem('token');
+    if (token) {
+      if (this.authService.isAuth()) {
+        this.isAuth = true;
+        const decodedToken = decode<DecodedToken>(token);
+        if (decodedToken) {
+          this.username = decodedToken.username;
+        }
+      }
 
-  toggleTheme(): void {
-    if (this.isLight) {
-      this.isLight = false;
-      console.log('Dark theme')
-    } else {
-      this.isLight = true;
-      console.log('Light theme')
     }
   }
+
+  signout() {
+    this.authService.signout();
+    this.router.navigate(['/login']);
+  }
+
 
 }

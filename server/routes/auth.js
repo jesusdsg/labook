@@ -15,6 +15,12 @@ router.get("/", (req, res) => {
   });
 });
 
+router.post("/signout", (req, res) => {
+  jwt.destroy(req.data.token);
+  res.json({msg: "Logged out"});
+});
+
+
 router.post("/test", verifyToken, (req, res) => {
   res.json("test");
 });

@@ -21,6 +21,11 @@ export class AuthService {
     return this.http.post(`${this.uri}/auth/signup`, user);
   }
 
+  signout() {
+    //Logging out user
+    localStorage.removeItem('token');
+  }
+
 
   isAuth(): boolean {
     //Checking if user is authenticated
