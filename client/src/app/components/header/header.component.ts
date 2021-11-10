@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserSharingService } from 'src/app/services/user-sharing.service';
 import decode from 'jwt-decode';
 
 @Component({
@@ -10,35 +11,27 @@ import decode from 'jwt-decode';
 })
 export class HeaderComponent implements OnInit {
 
-  isAuth: boolean = false;
+  isLogged: boolean = false;
   username: string = '';
 
-  constructor(private router: Router, private authService: AuthService) {
-
+  constructor(private router: Router, private authService: AuthService, private userSharingService: UserSharingService)
+  {
+    this.userSharingService.isLogged.subscribe(value => {
+      this.isLogged = value;
+    });
+    this.userSharingService.username.subscribe(value => {
+      this.username = value;
+    });
   }
 
   ngOnInit(): void {
-    type DecodedToken = {
-      id: number;
-      username: string;
-      rol_id: number;
-    }
-    const token = localStorage.getItem('token');
-    if (token) {
-      if (this.authService.isAuth()) {
-        this.isAuth = true;
-        const decodedToken = decode<DecodedToken>(token);
-        if (decodedToken) {
-          this.username = decodedToken.username;
-        }
-      }
-
-    }
   }
 
   signout() {
     this.authService.signout();
     this.router.navigate(['/login']);
+    this.username = '';
+    this.isLogged = false;
   }
 
 

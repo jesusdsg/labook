@@ -14,9 +14,10 @@ export class AuthGuard implements CanActivate {
 
     //Cheking with the auth service if the user is logged in and token expired
     if (!this.authService.isAuth()) {
-      console.error('Invalid Token!')
-      return false;
+      //console.error('Invalid Token!');
       this.router.navigate(['/login']);
+      return false;
+      
     }
     else {
       return true;

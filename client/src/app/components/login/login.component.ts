@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserSharingService } from 'src/app/services/user-sharing.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   errorText = "";
 
-  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder, private userSharingService: UserSharingService) {
     
     //Initializing form
     this.userForm = this.fb.group({
@@ -42,6 +43,9 @@ export class LoginComponent implements OnInit {
           //Saving token
           if(res.token) {
             localStorage.setItem('token', res.token);
+            //Sharing date to other components
+            this.userSharingService.isLogged.next(true);
+            this.userSharingService.username.next(res.user.username);
             this.router.navigate(['/admin']);
           }
           else {

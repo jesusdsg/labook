@@ -15,6 +15,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserSharingService } from './services/user-sharing.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    }
+    },
+    UserSharingService
   ],
   bootstrap: [AppComponent]
 })

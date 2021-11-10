@@ -1,18 +1,20 @@
 <div class="home-header">
   <ul>
-    <li [ngClass]="isAuth ? 'visible' : 'hidden'">
-      <a (click)="signout()" class="pointer"><i class="fas fa-sign-out">&nbsp;</i>Sign out</a>
+    <li *ngIf="isLogged">
+      <a (click)="signout()" class="pointer"
+        ><i class="fas fa-sign-out">&nbsp;</i>Sign out</a
+      >
     </li>
 
-    <li [ngClass]="isAuth ? 'visible' : 'hidden'">
-      <a routerLink="/"><i class="fas fa-user">&nbsp;</i>{{username}}</a>
+    <li *ngIf="isLogged">
+      <a routerLink="/"><i class="fas fa-user">&nbsp;</i>{{ username }}</a>
     </li>
 
-    <li [ngClass]="isAuth ? 'hidden' : 'visible'">
+    <li *ngIf="!isLogged">
       <a routerLink="/signup"><i class="fas fa-user-plus">&nbsp;</i>Sign up</a>
     </li>
 
-    <li [ngClass]="isAuth ? 'hidden' : 'visible'">
+    <li *ngIf="!isLogged">
       <a routerLink="/login"><i class="fas fa-sign-in">&nbsp;</i>Log in</a>
     </li>
   </ul>
