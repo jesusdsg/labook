@@ -16,6 +16,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSharingService } from './services/user-sharing.service';
+import { FooterComponent } from './components/footer/footer.component';
+import { UsersComponent } from './components/functions/users/users.component';
+import { ReadersComponent } from './components/functions/readers/readers.component';
+import { ChartContainerComponent } from './components/functions/chart-container/chart-container.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { UserSharingService } from './services/user-sharing.service';
     HomeComponent,
     DashboardComponent,
     SigupComponent,
-    AdminComponent
+    AdminComponent,
+    FooterComponent,
+    UsersComponent,
+    ReadersComponent,
+    ChartContainerComponent
   ],
   imports: [
     BrowserModule,

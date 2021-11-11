@@ -14,6 +14,17 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/readers", (req, res) => {
+  mysqlConnection.query("SELECT * FROM users WHERE rol_id=3", (err, rows, fields) => {
+    if (!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });
+});
+
+
 router.get("/signin", (req, res) => {
   mysqlConnection.query("SELECT * FROM users", (err, rows, fields) => {
     if (!err) {
