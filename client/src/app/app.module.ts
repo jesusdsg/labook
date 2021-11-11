@@ -20,6 +20,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UsersComponent } from './components/functions/users/users.component';
 import { ReadersComponent } from './components/functions/readers/readers.component';
 import { ChartContainerComponent } from './components/functions/chart-container/chart-container.component';
+import { ListReadersComponent } from './components/functions/list-readers/list-readers.component';
+import { AddReadersComponent } from './components/functions/add-readers/add-readers.component';
+import { MainPageComponent } from './components/functions/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ChartContainerComponent } from './components/functions/chart-container/
     FooterComponent,
     UsersComponent,
     ReadersComponent,
-    ChartContainerComponent
+    ChartContainerComponent,
+    ListReadersComponent,
+    AddReadersComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

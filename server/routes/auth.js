@@ -92,6 +92,7 @@ router.post("/signup", async (req, res) => {
     lastname,
     address,
     phone,
+    rol_id
   } = req.body);
   const hash = await helpers.encryptPassword(user.password); //Encryting password
   mysql.query(
@@ -104,7 +105,7 @@ router.post("/signup", async (req, res) => {
         } else {
           mysql.query(
             "INSERT INTO users (username, password, email, firstname, lastname, address, phone, rol_id) VALUES (?,?,?,?,?,?,?,?)",
-            [username, hash, email, firstname, lastname, address, phone, 2],
+            [username, hash, email, firstname, lastname, address, phone, rol_id],
             async (err, rows, fields) => {
               if (!err) {
                 res.json({ msg: "User created", status: true });

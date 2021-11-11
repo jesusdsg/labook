@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
   });
 });
 
+//Readers
 router.get("/readers", (req, res) => {
   mysqlConnection.query("SELECT * FROM users WHERE rol_id=3", (err, rows, fields) => {
     if (!err) {
@@ -24,6 +25,25 @@ router.get("/readers", (req, res) => {
   });
 });
 
+router.delete("/readers/:id", (req, res) => {
+  console.log('Body', req.params);
+  const id = req.params.id;
+  console.log('id del eleminar', id)
+  mysqlConnection.query(
+    "DELETE FROM users where id=?",
+    [id],
+    (err, rows, fields) => {
+      if (!err) {
+        console.log(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+
+//End Readers
 
 router.get("/signin", (req, res) => {
   mysqlConnection.query("SELECT * FROM users", (err, rows, fields) => {

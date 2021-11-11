@@ -223,7 +223,6 @@ h4:after {
 .form-btn {
   margin-top: 1rem;
   margin-bottom: 2rem;
-  width: 100%;
   padding: 12px 18px;
   color: #fff;
   background-color: $green-color;
@@ -280,6 +279,10 @@ h4:after {
 .px-1 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.n-t {
+  margin-top: 0;
 }
 
 .py-1 {
@@ -348,7 +351,7 @@ table {
 
   td,
   th {
-    border: 1px solid $border;
+    //border: 1px solid $border;
     padding: 10px;
   }
 
@@ -357,15 +360,16 @@ table {
   }
 
   tr:hover {
-    background-color: rgba($input-bg, 0.9);
+    background-color: rgba($green-color, 0.9);
+    color: $content;
   }
 
   th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: $green-color;
-    color: white;
+    background-color: rgba($input-bg, 0.6);
+    color: $title;
     font-family: 'Lato',
       sans-serif;
   }
@@ -516,6 +520,12 @@ input[type=checkbox]:checked:disabled+label:before {
   }
 
   li a:hover {
+    color: $content;
+    border-radius: $border-radius;
+    background-color: $green-color
+  }
+
+  li button:hover {
     color: $content;
     border-radius: $border-radius;
     background-color: $green-color

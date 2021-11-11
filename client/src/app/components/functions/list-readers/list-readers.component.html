@@ -1,0 +1,158 @@
+<div>
+  <div>
+    <div class="m-b-1 m-t-1">
+      <button class="form-btn n-t" (click)="createReader()">
+        <i class="fas fa-plus-circle">&nbsp;</i> Add Reader
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="container m-t-1 block"
+    [ngClass]="createMode ? 'visible' : 'hidden'"
+  >
+    <form [formGroup]="readerForm" (ngSubmit)="addReader()">
+      <div class="form-group">
+        <div class="m-b-1 m-t-1">
+          <h4>Create Reader</h4>
+        </div>
+        <span class="text-error block m-t-1 bold">{{ errorText }}</span>
+        <div class="form-group-inline">
+          <input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('username')?.hasError('required') &&
+                readerForm.get('username')?.touched
+            }"
+            formControlName="username"
+            type="text"
+            name="username"
+            class="form-control m-r"
+            id="username"
+            placeholder="Username"
+          />
+          <input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('email')?.hasError('required') &&
+                readerForm.get('email')?.touched
+            }"
+            formControlName="email"
+            type="email"
+            name="email"
+            class="form-control m-r"
+            id="email"
+            placeholder="Email"
+          /><input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('password')?.hasError('required') &&
+                readerForm.get('password')?.touched
+            }"
+            formControlName="password"
+            type="password"
+            name="password"
+            class="form-control m-r"
+            id="password"
+            placeholder="Password"
+          /><input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('firstname')?.hasError('required') &&
+                readerForm.get('firstname')?.touched
+            }"
+            formControlName="firstname"
+            type="text"
+            name="firstname"
+            class="form-control m-r"
+            id="firstname"
+            placeholder="First Name"
+          />
+        </div>
+        <div class="form-group-inline">
+          <input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('lastname')?.hasError('required') &&
+                readerForm.get('lastname')?.touched
+            }"
+            formControlName="lastname"
+            type="text"
+            name="lastname"
+            class="form-control m-r"
+            id="lastname"
+            placeholder="Last Name"
+          /><input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('address')?.hasError('required') &&
+                readerForm.get('address')?.touched
+            }"
+            formControlName="address"
+            type="text"
+            name="address"
+            class="form-control m-r"
+            id="address"
+            placeholder="Address"
+          />
+          <input
+            [ngClass]="{
+              'outline-error':
+                readerForm.get('phone')?.hasError('required') &&
+                readerForm.get('phone')?.touched
+            }"
+            formControlName="phone"
+            type="text"
+            name="phone"
+            class="form-control m-r"
+            id="phone"
+            placeholder="Phone"
+          />
+          <input type="text" style="visibility: hidden" class="form-control" />
+        </div>
+        <div><button type="submit" class="form-btn">Create Reader</button></div>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <div class="m-b-1 m-t-1">
+  <h4>List of current Readers</h4>
+</div>
+<table class="table-fixed full">
+    <thead>
+      <tr>
+        <th class="w-1/2 px-4 py-2">Username</th>
+        <th class="w-1/4 px-4 py-2">Full Name</th>
+        <th class="w-1/4 px-4 py-2">Address</th>
+        <th class="w-1/4 px-4 py-2">Phone</th>
+        <th class="w-1/4 px-4 py-2">Email</th>
+        <th class="w-1/4 px-4 py-2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reader of readers">
+        <td class="border px-4 py-2">{{ reader.username }}</td>
+        <td class="border px-4 py-2">
+          {{ reader.firstname + " " + reader.lastname }}
+        </td>
+        <td class="border px-4 py-2">{{ reader.address }}</td>
+        <td class="border px-4 py-2">{{ reader.phone }}</td>
+        <td class="border px-4 py-2">{{ reader.email }}</td>
+
+        <td class="border px-4 py-2 centered">
+          <i class="fas fa-edit pointer m-r"></i>
+          <i class="fas fa-trash pointer m-r" (click)="deleteReader(reader.id)"></i>
+        </td>
+      </tr>
+      <span *ngIf="readers.length == 0">
+        <tr>
+          <td class="border px-4 py-2" colspan="5">No Readers found</td>
+        </tr></span
+      >
+    </tbody>
+  </table>
+  </div>
+
+  
+</div>

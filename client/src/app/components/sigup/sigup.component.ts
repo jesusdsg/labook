@@ -62,7 +62,8 @@ export class SigupComponent implements OnInit {
       firstname: this.userForm.get('firstname')?.value,
       lastname: this.userForm.get('lastname')?.value,
       address: this.userForm.get('address')?.value,
-      phone: this.userForm.get('phone')?.value
+      phone: this.userForm.get('phone')?.value,
+      rol_id: 2
     }
     if (this.userForm.valid) {
       console.log(user, 'Registered');
@@ -80,8 +81,6 @@ export class SigupComponent implements OnInit {
           this.errorText = err.error.message;
         }
       )
-    //this.status = "registered";
-    //this.router.navigate(['/done', this.status]);
     }
     else {
       console.log(user, 'Not Registered');
