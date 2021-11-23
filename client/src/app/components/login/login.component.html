@@ -1,44 +1,74 @@
-<div class="home-content centered">
-  <form [formGroup]="userForm" (ngSubmit)="login()">
-    <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
-    <div class="form-group">
-      <div class="m-b-1 m-t-1">
-        <h4>Login</h4>
-      </div>
-      <span class="text-error block m-t-1 bold">{{errorText}}</span>
-      <input
-        [ngClass]="{'outline-error' : userForm.get('username')?.hasError('required') && userForm.get('username')?.touched}"
-        formControlName="username"
-        type="text"
-        name="username"
-        class="form-control"
-        id="username"
-        placeholder="Username"
-      />
-      <input
-      [ngClass]="{'outline-error' : userForm.get('password')?.hasError('required') && userForm.get('password')?.touched}"
-        formControlName="password"
-        type="password"
-        name="password"
-        class="form-control"
-        id="password"
-        placeholder="Password"
+<div class="content-container">
+  <div class="content poster border-left">
+    <div>
+      <h1>Welcome to Labook!</h1>
+      <br />
+      <p>
+        Labook is a SPA for controlling inventories, rentals, book returns, a
+        small scalable project that can be used to manage your library.
+      </p>
+      <img
+        src="../../../../assets/poster.svg"
+        id="home-poster"
+        alt="home-image"
       />
     </div>
-    
-        
-    <div class="form-info__container">
-      <div style="width: 40%">
-        <input type="checkbox" id="remember" name="remember" value="remember" />
-        <label for="remember">Remember</label>
+  </div>
+
+  <div class="content border-right centered">
+    <form [formGroup]="userForm" (ngSubmit)="login()">
+      <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
+      <div class="form-group">
+        <div class="m-b-1 m-t-1">
+          <h4>Login</h4>
+        </div>
+        <span class="text-error block m-t-1 bold">{{ errorText }}</span>
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('username')?.hasError('required') &&
+              userForm.get('username')?.touched
+          }"
+          formControlName="username"
+          type="text"
+          name="username"
+          class="form-control"
+          id="username"
+          placeholder="Username"
+        />
+        <input
+          [ngClass]="{
+            'outline-error':
+              userForm.get('password')?.hasError('required') &&
+              userForm.get('password')?.touched
+          }"
+          formControlName="password"
+          type="password"
+          name="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+        />
       </div>
 
-      <div style="width: 60%">
-        <a href="#" class="bold green" style="padding-top: 1rem">
-          Forget password?
-        </a>
+      <div class="form-info__container">
+        <div style="width: 40%">
+          <input
+            type="checkbox"
+            id="remember"
+            name="remember"
+            value="remember"
+          />
+          <label for="remember">Remember</label>
+        </div>
+
+        <div style="width: 60%">
+          <a href="#" class="bold green" style="padding-top: 1rem">
+            Forget password?
+          </a>
+        </div>
       </div>
-    </div>
-    <div><button type="submit" class="form-btn full">Login</button></div>
-  </form>
+      <div><button type="submit" class="form-btn full">Login</button></div>
+    </form>
+  </div>
 </div>

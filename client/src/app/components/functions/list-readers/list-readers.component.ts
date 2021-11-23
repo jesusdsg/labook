@@ -30,7 +30,7 @@ export class ListReadersComponent implements OnInit {
     }
     );
   }
-  
+
   addReader() {
     const user = {
       username: this.readerForm.get('username')?.value,
@@ -76,8 +76,8 @@ export class ListReadersComponent implements OnInit {
     this.readerForm.reset();
   }
 
-  createReader(){
-    if(this.createMode){
+  createReader() {
+    if (this.createMode) {
       this.createMode = false;
     } else {
       this.createMode = true;

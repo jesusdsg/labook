@@ -1,130 +1,179 @@
-<div class="home-content centered" [ngClass]="status ? 'hidden' : 'visible'">
-  <form [formGroup]="userForm" (ngSubmit)="signup()">
-    <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
-    <div class="form-group">
-      <div class="m-b-1 m-t-1">
-        <h4>Sign in</h4>
-      </div>
-      <span class="text-error block m-t-1 bold">{{errorText}}</span>
-      <div class="form-group-inline">
-        
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('username')?.hasError('required') &&
-              userForm.get('username')?.touched
-          }"
-          formControlName="username"
-          type="text"
-          name="username"
-          class="form-control m-r"
-          id="username"
-          placeholder="Username"
-        />
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('email')?.hasError('required') &&
-              userForm.get('email')?.touched
-          }"
-          formControlName="email"
-          type="email"
-          name="email"
-          class="form-control"
-          id="email"
-          placeholder="Email"
-        />
-      </div>
-
-      <div class="form-group-inline">
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('password')?.hasError('required') &&
-              userForm.get('password')?.touched
-          }"
-          formControlName="password"
-          type="password"
-          name="password"
-          class="form-control m-r"
-          id="password"
-          placeholder="Password"
-        />
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('confirm')?.hasError('required') &&
-              userForm.get('confirm')?.touched
-          }"
-          formControlName="confirm"
-          type="password"
-          name="confirm"
-          class="form-control"
-          id="confirm"
-          placeholder="Password"
-        />
-      </div>
-      <div class="form-group-inline">
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('firstname')?.hasError('required') &&
-              userForm.get('firstname')?.touched
-          }"
-          formControlName="firstname"
-          type="text"
-          name="firstname"
-          class="form-control m-r"
-          id="firstname"
-          placeholder="First Name"
-        />
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('lastname')?.hasError('required') &&
-              userForm.get('lastname')?.touched
-          }"
-          formControlName="lastname"
-          type="text"
-          name="lastname"
-          class="form-control"
-          id="lastname"
-          placeholder="Last Name"
-        />
-      </div>
-      <div class="form-group-inline">
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('address')?.hasError('required') &&
-              userForm.get('address')?.touched
-          }"
-          formControlName="address"
-          type="text"
-          name="address"
-          class="form-control m-r"
-          id="address"
-          placeholder="Address"
-        />
-        <input
-          [ngClass]="{
-            'outline-error':
-              userForm.get('phone')?.hasError('required') &&
-              userForm.get('phone')?.touched
-          }"
-          formControlName="phone"
-          type="text"
-          name="phone"
-          class="form-control"
-          id="phone"
-          placeholder="Phone"
-        />
-      </div>
+<div class="content-container">
+  <div class="content poster border-left">
+    <div>
+      <h1>Welcome to Labook!</h1>
+      <br />
+      <p>
+        Labook is a SPA for controlling inventories, rentals, book returns, a
+        small scalable project that can be used to manage your library.
+      </p>
+      <img
+        src="../../../../assets/poster.svg"
+        id="home-poster"
+        alt="home-image"
+      />
     </div>
-    <div class="form-info__container">
-      <div class="centered" style="width: 100%">
+  </div>
+
+  <div
+    class="content centered border-right"
+    [ngClass]="status ? 'hidden' : 'visible'"
+  >
+    <form [formGroup]="userForm" (ngSubmit)="signup()">
+      <img src="../../../assets/logo.png" id="logo" class="auto" alt="Logo" />
+      <div class="form-group">
+        <div class="m-b-1 m-t-1">
+          <h4>Sign up</h4>
+        </div>
+        <span class="text-error block m-t-1 bold">{{ errorText }}</span>
+        <div class="form-group-inline">
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('username')?.hasError('required') &&
+                userForm.get('username')?.touched
+            }"
+            formControlName="username"
+            type="text"
+            name="username"
+            class="form-control m-r"
+            id="username"
+            placeholder="Username"
+          />
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('email')?.hasError('required') &&
+                userForm.get('email')?.touched
+            }"
+            formControlName="email"
+            type="email"
+            name="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+          />
+        </div>
+
+        <div class="form-group-inline">
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('password')?.hasError('required') &&
+                userForm.get('password')?.touched
+            }"
+            formControlName="password"
+            type="password"
+            name="password"
+            class="form-control m-r"
+            id="password"
+            placeholder="Password"
+          />
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('confirm')?.hasError('required') &&
+                userForm.get('confirm')?.touched
+            }"
+            formControlName="confirm"
+            type="password"
+            name="confirm"
+            class="form-control"
+            id="confirm"
+            placeholder="Password"
+          />
+        </div>
+        <div class="form-group-inline">
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('firstname')?.hasError('required') &&
+                userForm.get('firstname')?.touched
+            }"
+            formControlName="firstname"
+            type="text"
+            name="firstname"
+            class="form-control m-r"
+            id="firstname"
+            placeholder="First Name"
+          />
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('lastname')?.hasError('required') &&
+                userForm.get('lastname')?.touched
+            }"
+            formControlName="lastname"
+            type="text"
+            name="lastname"
+            class="form-control"
+            id="lastname"
+            placeholder="Last Name"
+          />
+        </div>
+        <div class="form-group-inline">
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('address')?.hasError('required') &&
+                userForm.get('address')?.touched
+            }"
+            formControlName="address"
+            type="text"
+            name="address"
+            class="form-control m-r"
+            id="address"
+            placeholder="Address"
+          />
+          <input
+            [ngClass]="{
+              'outline-error':
+                userForm.get('phone')?.hasError('required') &&
+                userForm.get('phone')?.touched
+            }"
+            formControlName="phone"
+            type="text"
+            name="phone"
+            class="form-control"
+            id="phone"
+            placeholder="Phone"
+          />
+        </div>
+      </div>
+      <div class="form-info__container">
+        <div class="centered" style="width: 100%">
+          <span
+            >Already have an account?<a
+              routerLink="/login"
+              class="bold green pointer"
+              style="padding-top: 1rem"
+            >
+              Login
+            </a></span
+          >
+        </div>
+      </div>
+      <div><button type="submit" class="form-btn full">Signup</button></div>
+    </form>
+  </div>
+
+  <div class="content centered" [ngClass]="status ? 'visible' : 'hidden'">
+    <div>
+      <h1>Congrats!</h1>
+      <img
+        src="../../../../assets/done.svg"
+        id="home-poster"
+        alt="home-image"
+      />
+      <br />
+      <div class="m-t-1">
+        <p>
+          You now have an account, please log in to start discovering Labook.
+        </p>
+      </div>
+      <div class="centered m-t-1" style="width: 100%">
         <span
-          >Already have an account?<a
+          >So... Let's start<a
             routerLink="/login"
             class="bold green pointer"
             style="padding-top: 1rem"
@@ -134,25 +183,5 @@
         >
       </div>
     </div>
-    <div><button type="submit" class="form-btn full">Signin</button></div>
-  </form>
-</div>
-
-<div class="home-content centered" [ngClass]="status ? 'visible' : 'hidden'">
-    <div>
-          <h1>Congrats!</h1> <img src="../../../../assets/done.svg" id="home-poster" alt="home-image" />
-          <br />
-          <div class="m-t-1">
-              <p>
-            You now have an account, please log in to start discovering Labook. 
-          </p>
-          </div>
-          <div class="centered m-t-1" style="width: 100%;">
-          <span>So... Let's start<a routerLink="/login" class="bold green pointer" style="padding-top: 1rem">
-          Login
-        </a></span>
-        
-      </div>
-         
-        </div>
+  </div>
 </div>
