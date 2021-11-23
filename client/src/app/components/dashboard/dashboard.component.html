@@ -1,113 +1,112 @@
 <div>
-  <div class="main-header">
-    <nav>
-      <a routerLink="/">
-        <img src="../../../assets/logo.png" alt="Logo" class="p-l" id="logo" />
-      </a>
-      <button
-        (click)="toggleSidebar()"
-        class="toggle-btn hidden"
-        aria-expanded="false"
-        aria-label="open menu"
-      >
-        <i class="fas fa-bars fa-1x"></i>
-      </button>
-      <ul class="main-menu" [ngClass]="sidebarToggle ? 'visible' : 'hidden'">
-        <li className="main-menu__heading">
-          <h3><i class="fas fa-exchange-alt"></i> Borrows</h3>
-        </li>
-        <li>
-          <a routerLink="/"
-            ><i class="fas fa-plus-circle"></i>&nbsp;Manage Borrow</a
-          >
-          <a routerLink="/"><i class="fas fa-list"></i>&nbsp;List of Borrows</a>
-        </li>
-        <div class="m-t-1"></div>
-        <li className="main-menu__heading">
-          <h3><i class="fas fa-book-reader"></i> Readers</h3>
-        </li>
-        <li>
-          <button (click)="showReaderPanel()"
-            ><i class="fas fa-plus-circle"></i>&nbsp;Manage Readers</button
-          >
-          <a routerLink="/"
-            ><i class="fas fa-list"></i>&nbsp;Reported Readers</a
-          >
-        </li>
-        <div class="m-t-1"></div>
-        <li className="main-menu__heading">
-          <h3><i class="fas fa-book"></i> Books</h3>
-        </li>
-        <li>
-          <a routerLink="/"><i class="fas fa-plus-circle"></i>&nbsp;Manage Books</a>
-          <a routerLink="/"
-            ><i class="fas fa-list"></i>&nbsp;List of Borrowed Books</a
-          >
-        </li>
-        <div class="m-t-1"></div>
-        <li className="main-menu__heading">
-          <h3><i class="fas fa-cog"></i> Settings</h3>
-        </li>
-        <li>
-          <a routerLink="/"><i class="fas fa-user"></i>&nbsp;Edit profile</a>
-        </li>
-      </ul>
-    </nav>
+    <div class="main-header">
+      <nav>
+        <a routerLink="/">
+          <img src="../../../assets/logo.png" alt="Logo" class="p-l" id="logo" />
+        </a>
+        <button
+          (click)="toggleSidebar()"
+          class="toggle-btn hidden"
+          aria-expanded="false"
+          aria-label="open menu"
+        >
+          <i class="fas fa-bars fa-1x"></i>
+        </button>
+        <ul class="main-menu" [ngClass]="sidebarToggle ? 'visible' : 'hidden'">
+          <li className="main-menu__heading">
+            <h3><i class="fas fa-exchange-alt"></i> Borrows</h3>
+          </li>
+          <li>
+            <button (click)="setActive"><i class="fas fa-plus-circle"></i>&nbsp;Manage Borrow</button>
+            <button><i class="fas fa-plus-circle"></i>&nbsp;Manage Borrow</button>
+          </li>
+          <div class="m-t-1"></div>
+          <li className="main-menu__heading">
+            <h3><i class="fas fa-book-reader"></i> Readers</h3>
+          </li>
+          <li>
+            <button (click)="showReaderPanel()">
+              <i class="fas fa-plus-circle"></i>&nbsp;Manage Readers
+            </button>
+            <a routerLink="/"
+              ><i class="fas fa-list"></i>&nbsp;Reported Readers</a
+            >
+          </li>
+          <div class="m-t-1"></div>
+          <li className="main-menu__heading">
+            <h3><i class="fas fa-book"></i> Books</h3>
+          </li>
+          <li>
+            <a routerLink="/"
+              ><i class="fas fa-plus-circle"></i>&nbsp;Manage Books</a
+            >
+            <a routerLink="/"
+              ><i class="fas fa-list"></i>&nbsp;List of Borrowed Books</a
+            >
+          </li>
+          <div class="m-t-1"></div>
+          <li className="main-menu__heading">
+            <h3><i class="fas fa-cog"></i> Settings</h3>
+          </li>
+          <li>
+            <a routerLink="/"><i class="fas fa-user"></i>&nbsp;Edit profile</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <section class="main-content">
+      <section [ngClass]="homePanel ? '' : 'hidden'" class="grid">
+        <article class="main__banner">
+          <div class="flex-responsive">
+            <div class="left main__banner-img">
+              <img
+                class="auto"
+                src="../../../assets/reading.svg"
+                alt="Book"
+                style="height: 180px"
+              />
+            </div>
+            <div class="px-1">
+              <h2 class="m-t-1 full block">
+                Keep track of everything your library has in it's creative
+                dashboard
+              </h2>
+              <br />
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Reprehenderit aperiam, temporibus, molestias veniam dicta
+                excepturi voluptate deleniti consectetur quidem laudantium omnis
+                ipsa natus ducimus harum vero nobis nisi quo doloribus.
+              </p>
+              <button class="btn-secondary">Learn More</button>
+            </div>
+            <div class="left main__banner-img">
+              <img
+                src="../../../assets/book.svg"
+                alt="Book"
+                style="width: 180px"
+              />
+            </div>
+          </div>
+        </article>
+  
+        <article>
+          <chart-container class="full centered"></chart-container>
+        </article>
+        <article>
+          <chart-container class="full centered"></chart-container>
+        </article>
+        <article>
+          <chart-container class="full centered"></chart-container>
+        </article>
+        <article>222</article>
+      </section>
+  
+      <section class="grid" [ngClass]="readerPanel ? 'visible' : 'hidden'">
+        <article>
+          <list-readers class="full"></list-readers>
+        </article>
+      </section>
+    </section>
   </div>
-  <section class="main-content">
-    <section [ngClass]="homePanel ? '' : 'hidden'" class="grid">
-      <article class="main__banner">
-        <div class="flex-responsive">
-          <div class="left main__banner-img">
-            <img
-              class="auto"
-              src="../../../assets/reading.svg"
-              alt="Book"
-              style="height: 180px"
-            />
-          </div>
-          <div class="px-1">
-            <h2 class="m-t-1 full block">
-              Keep track of everything your library has in it's creative
-              dashboard
-            </h2>
-            <br />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit aperiam, temporibus, molestias veniam dicta
-              excepturi voluptate deleniti consectetur quidem laudantium omnis
-              ipsa natus ducimus harum vero nobis nisi quo doloribus.
-            </p>
-            <button class="btn-secondary">Learn More</button>
-          </div>
-          <div class="left main__banner-img">
-            <img
-              src="../../../assets/book.svg"
-              alt="Book"
-              style="width: 180px"
-            />
-          </div>
-        </div>
-      </article>
-
-      <article>
-        <chart-container class="full centered"></chart-container>
-      </article>
-      <article>
-        <chart-container class="full centered"></chart-container>
-      </article>
-      <article>
-        <chart-container class="full centered"></chart-container>
-      </article>
-      <article>222</article>
-    </section>
-
-    <section class="grid" [ngClass]="readerPanel ? 'visible' : 'hidden'">
-      <article>
-         <list-readers class="full"></list-readers>
-      </article>
-     
-    </section>
-
-  </section>
-</div>
+  

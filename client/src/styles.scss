@@ -456,7 +456,6 @@ input[type=checkbox]:checked:disabled+label:before {
 
   li a:hover {
     color: rgba($text, 0.7);
-    ;
   }
 
 }
@@ -562,6 +561,12 @@ input[type=checkbox]:checked:disabled+label:before {
   }
 
   li a:hover {
+    color: $content;
+    border-radius: $border-radius;
+    background-color: $green-color
+  }
+
+  li .active {
     color: $content;
     border-radius: $border-radius;
     background-color: $green-color
