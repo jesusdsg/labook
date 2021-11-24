@@ -13,44 +13,14 @@
           <i class="fas fa-bars fa-1x"></i>
         </button>
         <ul class="main-menu" [ngClass]="sidebarToggle ? 'visible' : 'hidden'">
-          <li className="main-menu__heading">
-            <h3><i class="fas fa-exchange-alt"></i> Borrows</h3>
+          
+          <li className="main-menu__heading" *ngFor="let item of items; let i = index" [attr.data-index]="i">
+            <h3><i class="{{item.icon}}"></i> {{item.name}}</h3>
+            <div *ngFor="let child of item.children">
+              <button (click)="activateClass(child); showPanel(child.value)"  [ngClass]="{'active': child.active}"><i class="{{child.icon}}"></i>&nbsp;{{child.name}}</button>
+            </div>
           </li>
-          <li>
-            <button (click)="setActive"><i class="fas fa-plus-circle"></i>&nbsp;Manage Borrow</button>
-            <button><i class="fas fa-plus-circle"></i>&nbsp;Manage Borrow</button>
-          </li>
-          <div class="m-t-1"></div>
-          <li className="main-menu__heading">
-            <h3><i class="fas fa-book-reader"></i> Readers</h3>
-          </li>
-          <li>
-            <button (click)="showReaderPanel()">
-              <i class="fas fa-plus-circle"></i>&nbsp;Manage Readers
-            </button>
-            <a routerLink="/"
-              ><i class="fas fa-list"></i>&nbsp;Reported Readers</a
-            >
-          </li>
-          <div class="m-t-1"></div>
-          <li className="main-menu__heading">
-            <h3><i class="fas fa-book"></i> Books</h3>
-          </li>
-          <li>
-            <a routerLink="/"
-              ><i class="fas fa-plus-circle"></i>&nbsp;Manage Books</a
-            >
-            <a routerLink="/"
-              ><i class="fas fa-list"></i>&nbsp;List of Borrowed Books</a
-            >
-          </li>
-          <div class="m-t-1"></div>
-          <li className="main-menu__heading">
-            <h3><i class="fas fa-cog"></i> Settings</h3>
-          </li>
-          <li>
-            <a routerLink="/"><i class="fas fa-user"></i>&nbsp;Edit profile</a>
-          </li>
+          <div class="m-t-1 m-b-1"></div>
         </ul>
       </nav>
     </div>
