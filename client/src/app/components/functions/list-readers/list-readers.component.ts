@@ -140,6 +140,16 @@ export class ListReadersComponent implements OnInit {
     this.createText = "Create Reader";
   }
 
+  filterReaders(event: any) {
+    if (event.target.value.length > 0) {
+      this.readers = this.readers.filter((reader) => {
+        return reader.username.includes(event.target.value);
+      });
+    } else {
+      this.getReaders();
+    }
+  }
+
   ngOnInit(): void {
     this.getReaders();
   }

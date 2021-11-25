@@ -97,6 +97,14 @@ input {
   border: none;
 }
 
+.search-icon{
+  position: absolute;
+  opacity: 0.3;
+  margin-top: 0.6rem;
+  right: 5rem;
+  cursor: pointer;
+}
+
 #logo {
   margin: 0;
   height: 50px;
