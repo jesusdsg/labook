@@ -4,6 +4,7 @@ import { UsersService } from "src/app/services/users.service";
 import { AuthService } from "src/app/services/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 @Component({
   selector: "list-readers",
@@ -25,7 +26,7 @@ export class ListReadersComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
   ) {
     //Initializing form
     this.readerForm = this.fb.group({
@@ -63,6 +64,7 @@ export class ListReadersComponent implements OnInit {
         this.errorText = "";
         this.authService.signup(user).subscribe(
           (res: any) => {
+            Notify.success('Reader created sussesfully!');
             this.cleanData();
             this.createMode = false;
             this.getReaders();
@@ -72,7 +74,6 @@ export class ListReadersComponent implements OnInit {
           }
         );
       } else {
-        console.log(user, "Not Registered");
         this.errorText = "Please fill all the fields";
       }
     } else {
@@ -85,6 +86,8 @@ export class ListReadersComponent implements OnInit {
           (error) => {
             console.error(error, "Error");
           };
+          
+        Notify.success('Reader updated sussesfully!');
         this.createMode = false;
       }
     }
@@ -94,6 +97,7 @@ export class ListReadersComponent implements OnInit {
 
   deleteReader(id: any) {
     this.usersService.deleteReader(id).subscribe((data) => {
+      Notify.success('Reader deleted sussesfully!');
       this.cleanData();
     }),
       (error) => {

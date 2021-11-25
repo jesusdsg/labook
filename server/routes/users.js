@@ -61,7 +61,7 @@ router.put("/reader", async (req, res) => {
     [password, email, firstname, lastname, address, phone, id],
     (err, rows, fields) => {
       if (!err) {
-        res.json(rows, {msg: "Updated"});
+        res.json(rows);
       } else {
         console.log(err);
       }
