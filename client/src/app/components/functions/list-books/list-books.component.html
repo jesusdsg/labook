@@ -1,0 +1,147 @@
+<div>
+    <div>
+      <div class="m-b-1 m-t-1 flow-root">
+        <h2 class="left">Books</h2>
+        <button class="form-btn n-t right" (click)="createBook()" [ngClass]="createMode ? 'error-btn' : 'form-btn'">
+          <i class="fas" [ngClass]="createMode ? 'fa-times-circle' : 'fa-plus-circle'">&nbsp;</i> {{createMode ? 'Close Form' : 'Add Book'}}
+        </button>
+      </div>
+      <p>In this section, you can review the list of Books registered in the system and manage them. You can also create new ones. Be sure to make changes responsibly to avoid loss of records.</p>
+    </div>
+  
+    <div
+      class="container m-t-1 block"
+      [ngClass]="createMode ? 'visible' : 'hidden'"
+    >
+      <form [formGroup]="bookForm" (ngSubmit)="addBook()">
+        <div class="form-group">
+          <div class="m-b-1 m-t-1">
+            <h4>Create Book</h4>
+          </div>
+          <span class="text-error block m-t-1 bold">{{ errorText }}</span>
+          <div class="form-group-inline">
+            <input
+              [ngClass]="{
+                'outline-error':
+                  bookForm.get('title')?.hasError('required') &&
+                  bookForm.get('title')?.touched
+              }"
+              formControlName="title"
+              type="text"
+              name="title"
+              class="form-control m-r"
+              id="title"
+              placeholder="Title"
+              autofocus="autofocus"
+            />
+            <input
+              [ngClass]="{
+                'outline-error':
+                  bookForm.get('isbn')?.hasError('required') &&
+                  bookForm.get('isbn')?.touched
+              }"
+              formControlName="isbn"
+              type="text"
+              name="isbn"
+              class="form-control m-r"
+              id="isbn"
+              placeholder="ISBN"
+            /><input
+              [ngClass]="{
+                'outline-error':
+                  bookForm.get('cover')?.hasError('required') &&
+                  bookForm.get('cover')?.touched
+              }"
+              formControlName="cover"
+              type="text"
+              name="cover"
+              class="form-control m-r"
+              id="cover"
+              placeholder="Link of Cover image"
+            /><input
+              [ngClass]="{
+                'outline-error':
+                  bookForm.get('year')?.hasError('required') &&
+                  bookForm.get('year')?.touched
+              }"
+              formControlName="year"
+              type="date"
+              name="year"
+              class="form-control m-r"
+              id="year"
+            />
+          </div>
+          <div class="form-group-inline">
+            <select
+              [ngClass]="{
+                'outline-error':
+                  bookForm.get('category')?.hasError('required') &&
+                  bookForm.get('category')?.touched
+              }"
+              formControlName="category"
+              name="category"
+              class="form-control m-r"
+              id="category"
+            > <option value="">Category</option></select>
+            <select
+              [ngClass]="{
+                'outline-error':
+                  bookForm.get('author')?.hasError('required') &&
+                  bookForm.get('author')?.touched
+              }"
+              formControlName="author"
+              name="author"
+              class="form-control m-r"
+              id="author"
+            > <option value="">Author</option></select>
+           
+            <input type="text" style="visibility: hidden" class="form-control" />
+          </div>
+          <div><button type="submit" class="form-btn">{{createText}}</button></div>
+        </div>
+      </form>
+    </div>
+  
+    <div>
+      <div class="m-b-1 m-t-1">
+        <h4>List of current Books</h4>
+      </div>
+      <table class="table-fixed full">
+        <thead>
+          <tr>
+            <th class="w-1/2 px-4 py-2">Title</th>
+            <th class="w-1/4 px-4 py-2">ISBN</th>
+            <th class="w-1/4 px-4 py-2">Year</th>
+            <th class="w-1/4 px-4 py-2">Category</th>
+            <th class="w-1/4 px-4 py-2">Author</th>
+            <th class="w-1/4 px-4 py-2"><i class="fas fa-search search-icon"></i><input type="text" class="form-control" (input)="filterBooks($event)" placeholder="Search.." style="margin: 0;" /></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td class="border px-4 py-2">{{ book.title }}</td>
+            <td class="border px-4 py-2">
+              {{ book.isbn }}
+            </td>
+            <td class="border px-4 py-2">{{ book.year }}</td>
+            <td class="border px-4 py-2">{{ book.category_id }}</td>
+            <td class="border px-4 py-2">{{ book.author_id }}</td>
+  
+            <td class="border px-4 py-2 centered">
+              <i class="fas fa-edit pointer m-r" (click)="getBook(book.id)"></i>
+              <i
+                class="fas fa-trash pointer m-r"
+                (click)="deleteBook(book.id)"
+              ></i>
+            </td>
+          </tr>
+          <span *ngIf="books.length == 0">
+            <tr>
+              <td class="border px-4 py-2" colspan="5">No Books found</td>
+            </tr></span
+          >
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

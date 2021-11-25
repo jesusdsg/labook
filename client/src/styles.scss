@@ -32,11 +32,11 @@ $mobile-width: 768px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: $green-color;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgba($green-color, 0.5);
 }
 
 body {
@@ -246,6 +246,27 @@ h4:after {
 
   &:hover {
     background-image: linear-gradient(to right, $green-color, #40e495, #30dd8a, #2bb673);
+    background-position: 100% 0;
+    -o-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+}
+
+.error-btn {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 12px 18px;
+  color: #fff;
+  background-color: $error-color;
+  border-radius: $border-radius;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background-size: 300% 100%;
+
+  &:hover {
+    background-image: linear-gradient(to right, $error-color, #bb2828, #dd3039, #b62b2b);
     background-position: 100% 0;
     -o-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;

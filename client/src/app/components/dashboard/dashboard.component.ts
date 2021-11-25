@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { UsersComponent } from "../functions/users/users.component";
 import { HostListener } from "@angular/core";
 
 @Component({
@@ -10,6 +9,7 @@ import { HostListener } from "@angular/core";
 export class DashboardComponent implements OnInit {
   sidebarToggle: boolean = true;
   readerPanel: boolean = false;
+  bookPanel: boolean = false;
   homePanel: boolean = true;
   active: boolean = false;
 
@@ -103,8 +103,13 @@ export class DashboardComponent implements OnInit {
     if(value === 'manageReader'){
       this.readerPanel = true;
       this.homePanel = false;
+      this.bookPanel = false;
     }
-    console.log("show panels", value);
+    if(value === 'manageBook'){
+      this.bookPanel = true;
+      this.homePanel = false;
+      this.readerPanel = false;
+    }
   }
 
   showReaderPanel() {

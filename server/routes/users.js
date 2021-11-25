@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const mysqlConnection = require("../connection/database");
 
-const jwt = require("jsonwebtoken");
-
 router.get("/", (req, res) => {
   mysqlConnection.query("SELECT * FROM users", (err, rows, fields) => {
     if (!err) {
@@ -15,7 +13,6 @@ router.get("/", (req, res) => {
 });
 
 //Readers
-
 //get All
 router.get("/readers", (req, res) => {
   mysqlConnection.query("SELECT * FROM users WHERE rol_id=3", (err, rows, fields) => {

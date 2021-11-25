@@ -13,7 +13,6 @@
           <i class="fas fa-bars fa-1x"></i>
         </button>
         <ul class="main-menu" [ngClass]="sidebarToggle ? 'visible' : 'hidden'">
-          
           <li className="main-menu__heading" *ngFor="let item of items; let i = index" [attr.data-index]="i">
             <h3><i class="{{item.icon}}"></i> {{item.name}}</h3>
             <div *ngFor="let child of item.children">
@@ -75,6 +74,11 @@
       <section class="grid" [ngClass]="readerPanel ? 'visible' : 'hidden'">
         <article>
           <list-readers class="full"></list-readers>
+        </article>
+      </section>
+      <section class="grid" [ngClass]="bookPanel ? 'visible' : 'hidden'">
+        <article>
+          <list-books class="full"></list-books>
         </article>
       </section>
     </section>

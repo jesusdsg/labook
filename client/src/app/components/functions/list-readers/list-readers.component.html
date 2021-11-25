@@ -2,8 +2,8 @@
   <div>
     <div class="m-b-1 m-t-1 flow-root">
       <h2 class="left">Readers</h2>
-      <button class="form-btn n-t right" (click)="createReader()">
-        <i class="fas fa-plus-circle">&nbsp;</i> Add Reader
+      <button class="form-btn n-t right" (click)="createReader()" [ngClass]="createMode ? 'error-btn' : 'form-btn'">
+        <i class="fas" [ngClass]="createMode ? 'fa-times-circle' : 'fa-plus-circle'">&nbsp;</i> {{createMode ? 'Close Form' : 'Add Reader'}}
       </button>
     </div>
     <p>In this section, you can review the list of readers registered in the system and manage them. You can also create new ones. Be sure to make changes responsibly to avoid loss of records.</p>

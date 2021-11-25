@@ -13,6 +13,7 @@ app.use(morgan("dev"));
 //Routes
 app.use('/users', require('./routes/users'));
 app.use("/auth", require("./routes/auth"));
+app.use('/books', require('./routes/books'));
 app.use("/auth/test", require("./routes/auth"));
 app.use("/auth/signin", require("./routes/auth"));
 
