@@ -101,16 +101,16 @@ router.post("/signup", async (req, res) => {
     (err, rows, fields) => {
       if (!err) {
         if (rows.length > 0) {
-          res.json({msg: "User already exists"});
+          res.json({msg: "The User already exists", status: 400});
         } else {
           mysqlConnection.query(
             "INSERT INTO users (username, password, email, firstname, lastname, address, phone, rol_id) VALUES (?,?,?,?,?,?,?,?)",
             [username, hash, email, firstname, lastname, address, phone, rol_id],
             async (err, rows, fields) => {
               if (!err) {
-                res.json({ msg: "User created", status: true });
+                res.json({ msg: "User created successfully", status: 200 });
               } else {
-                console.log(err);
+                res.json({msg: "Error creating the user", status: 400});
               }
             }
           );

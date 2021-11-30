@@ -39,25 +39,26 @@ router.post("/", async (req, res) => {
     isbn,
     cover,
     year,
-    category_id,
-    author_id,
+    category,
+    author,
   } = req.body);
+  console.log('Entro al book', book);
   mysqlConnection.query(
     "SELECT * FROM books WHERE isbn=?",
     [isbn],
     (err, rows, fields) => {
       if (!err) {
         if (rows.length > 0) {
-          res.json({msg: "User already exists"});
+          res.json({msg: "The book already exists", status: 400});
         } else {
           mysqlConnection.query(
             "INSERT INTO books (title, description, isbn, cover, year, category_id, author_id) VALUES (?,?,?,?,?,?,?)",
-            [title, description, isbn, cover, year, category_id, author_id],
+            [title, description, isbn, cover, year, category, author],
             async (err, rows, fields) => {
               if (!err) {
-                res.json({ msg: "Book created"});
+                res.json({ msg: "The Book created successfully", status: 200 });
               } else {
-                console.log(err);
+                res.json({msg: "Error creating the book", status: 400});
               }
             }
           );

@@ -58,7 +58,7 @@ export class ListBooksComponent implements OnInit {
     };
     if (!this.editMode) {
       if (this.bookForm.valid) {
-        if (this.selectedCategory == 0 || this.selectedAuthor == 0) {
+        if (this.selectedCategory == 0 || this.selectedCategory == undefined || this.selectedAuthor == 0 || this.selectedAuthor == undefined) {
           Notify.warning("Please select category and author");
           this.getBooks();
         } else {
@@ -66,10 +66,12 @@ export class ListBooksComponent implements OnInit {
         this.errorText = "";
         this.booksService.addBook(book).subscribe(
           (res: any) => {
-            Notify.success('Book created sussesfully!');
-            this.cleanData();
-            this.createMode = false;
-            this.getBooks();
+            if(res.status == 200) {
+              Notify.success(res.msg);
+              this.cleanData();
+              this.createMode = false;
+              this.getBooks();
+            }
           },
           (err) => {
             this.errorText = err.error.message;
