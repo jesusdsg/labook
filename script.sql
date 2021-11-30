@@ -37,6 +37,7 @@ create table authors(
 create table books (
 	id int not null auto_increment PRIMARY KEY,
 	title varchar(50) default null UNIQUE,
+    description varchar(150) default null,
     isbn varchar(50) default null UNIQUE,
     cover varchar(150) default null,
     year timestamp,

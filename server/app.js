@@ -14,6 +14,7 @@ app.use(morgan("dev"));
 app.use('/users', require('./routes/users'));
 app.use("/auth", require("./routes/auth"));
 app.use('/books', require('./routes/books'));
+app.use('/addons', require('./routes/addons'));
 app.use("/auth/test", require("./routes/auth"));
 app.use("/auth/signin", require("./routes/auth"));
 

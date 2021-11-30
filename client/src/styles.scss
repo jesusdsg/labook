@@ -212,7 +212,7 @@ h4:after {
 
 .form-control {
   font-size: 14px;
-  padding: 10px 15px;
+  padding: 8px 15px;
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -229,6 +229,31 @@ h4:after {
 
   &:focus {
     outline: none;
+  }
+}
+
+.form-select {
+
+  font-size: 14px;
+  padding: 8px 15px;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: $border-radius;
+  border: 1px solid $border;
+  color: $text;
+
+  option:before {
+    content: ">";
+    font-size: 20px;
+    display: none;
+    padding-right: 10px;
+    padding-left: 5px;
+    color: #fff;
+  }
+  
+  option:hover:before {
+    display: inline;
   }
 }
 
@@ -393,7 +418,7 @@ table {
   }
 
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #fafafa;
   }
 
   tbody tr:hover {
@@ -406,7 +431,7 @@ table {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: rgba($input-bg, 0.2);
+    background-color: rgba($input-bg, 0.4);
     color: $title;
     font-family: 'Lato',
       sans-serif;
@@ -642,7 +667,7 @@ box-shadow: $box-shadow;
   left: $main-header-width;
   width: calc(100% - #{$main-header-width});
   min-height: 100vh;
-  padding: 30px;
+  padding: 40px;
   color: $text;
 }
 

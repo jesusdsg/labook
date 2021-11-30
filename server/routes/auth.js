@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const mysql = require("../connection/database");
+const mysqlConnection = require("../connection/database");
 const helpers = require("../lib/helpers");
 
 const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
-  mysql.query("SELECT * FROM users", (err, rows, fields) => {
+  mysqlConnection.query("SELECT * FROM users", (err, rows, fields) => {
     if (!err) {
       res.json(rows);
     } else {
@@ -28,7 +28,7 @@ router.post("/test", verifyToken, (req, res) => {
 //Sign in
 router.post("/signin", async (req, res) => {
   const { username, password } = req.body;
-  mysql.query(
+  mysqlConnection.query(
     "SELECT * FROM users where username=? OR email=?",
     [username, username],
     async (err, rows, fields) => {
@@ -95,7 +95,7 @@ router.post("/signup", async (req, res) => {
     rol_id
   } = req.body);
   const hash = await helpers.encryptPassword(user.password); //Encryting password
-  mysql.query(
+  mysqlConnection.query(
     "SELECT * FROM users where username=? OR email=?",
     [username, email],
     (err, rows, fields) => {
@@ -103,7 +103,7 @@ router.post("/signup", async (req, res) => {
         if (rows.length > 0) {
           res.json({msg: "User already exists"});
         } else {
-          mysql.query(
+          mysqlConnection.query(
             "INSERT INTO users (username, password, email, firstname, lastname, address, phone, rol_id) VALUES (?,?,?,?,?,?,?,?)",
             [username, hash, email, firstname, lastname, address, phone, rol_id],
             async (err, rows, fields) => {
