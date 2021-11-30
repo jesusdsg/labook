@@ -50,7 +50,7 @@ create table books (
 );
 
 
-
+SELECT b.*, a.name as author_name, c.name as category_name FROM books as b INNER JOIN authors as a ON b.author_id = a.id INNER JOIN categories as c ON b.category_id = c.id
 
 
 INSERT INTO `users`(`name`) VALUES ('Administrator');

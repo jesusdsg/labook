@@ -15,7 +15,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export class ListBooksComponent implements OnInit {
   categories: any[] = [];
   authors: any[] = [];
-  selectedAuthor: any;
+  selectedAuthor: any ;
   selectedCategory: any;
   books: Books[] = [];
   bookForm: FormGroup;
@@ -58,7 +58,11 @@ export class ListBooksComponent implements OnInit {
     };
     if (!this.editMode) {
       if (this.bookForm.valid) {
-        console.log('registering');
+        if (this.selectedCategory == 0 || this.selectedAuthor == 0) {
+          Notify.warning("Please select category and author");
+          this.getBooks();
+        } else {
+        console.log('registering', book);
         this.errorText = "";
         this.booksService.addBook(book).subscribe(
           (res: any) => {
@@ -70,7 +74,7 @@ export class ListBooksComponent implements OnInit {
           (err) => {
             this.errorText = err.error.message;
           }
-        );
+        );}
       } else {
         this.errorText = "Please fill all the fields";
       }
@@ -170,7 +174,7 @@ export class ListBooksComponent implements OnInit {
   getCategories() {
     this.addonsService.getCategories().subscribe((data) => {
       this.categories =  data;
-      console.log(this.categories);
+      this.categories.unshift({id: 0, name: 'Select Category'});
     }),
       (error) => {
         console.error(error, "Error");
@@ -180,7 +184,7 @@ export class ListBooksComponent implements OnInit {
   getAuthors() {
     this.addonsService.getAuthors().subscribe((data) => {
       this.authors = data;
-      console.log(this.authors);
+      this.authors.unshift({id: 0, name: 'Select Author'});
     }),
       (error) => {
         console.error(error, "Error");
@@ -190,6 +194,7 @@ export class ListBooksComponent implements OnInit {
   getBooks() {
     this.booksService.getBooks().subscribe((data) => {
       this.books = data;
+      console.log(this.books);
     }),
       (error) => {
         console.error(error, "Error");

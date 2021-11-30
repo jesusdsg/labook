@@ -4,7 +4,8 @@ const router = express.Router();
 const mysql = require("../connection/database");
 
 router.get("/", (req, res) => {
-  mysqlConnection.query("SELECT * FROM books", (err, rows, fields) => {
+  //mysqlConnection.query("SELECT * FROM books", (err, rows, fields) => {
+    mysqlConnection.query("SELECT b.*, a.name as author_name, c.name as category_name FROM books as b INNER JOIN authors as a ON b.author_id = a.id INNER JOIN categories as c ON b.category_id = c.id", (err, rows, fields) => {
     if (!err) {
       res.json(rows);
     } else {
@@ -41,7 +42,6 @@ router.post("/", async (req, res) => {
     category_id,
     author_id,
   } = req.body);
-  console.log(book);
   mysqlConnection.query(
     "SELECT * FROM books WHERE isbn=?",
     [isbn],
