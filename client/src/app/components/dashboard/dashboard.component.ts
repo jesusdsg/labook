@@ -96,7 +96,18 @@ export class DashboardComponent implements OnInit {
   }
 
   activateClass(item) {
-    item.active = !item.active;
+    console.log('Item', item);
+    this.items.forEach((element) => {
+      element.children.forEach((child) => {
+        child.active = false;
+        if(child.value === item.value){
+          child.active = true;
+        }
+        else {
+          child.active = false;
+        }
+      });
+    });
   }
 
   showPanel(value) {
