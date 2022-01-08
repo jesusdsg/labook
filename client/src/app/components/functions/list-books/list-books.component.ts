@@ -15,8 +15,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export class ListBooksComponent implements OnInit {
   categories: any[] = [];
   authors: any[] = [];
+  location: any[] = [];
   selectedAuthor: any ;
   selectedCategory: any;
+  selectedLocation: any;
   books: Books[] = [];
   bookForm: FormGroup;
   errorText: string = "";
@@ -39,9 +41,11 @@ export class ListBooksComponent implements OnInit {
       description: ["", [Validators.required]],
       isbn: ["", [Validators.required]],
       cover: ["", [Validators.required]],
+      digital: [""],
       year: ["", [Validators.required]],
       category_id: [""],
       author_id: [""],
+      location_id: [""],
     });
   }
 
@@ -55,14 +59,14 @@ export class ListBooksComponent implements OnInit {
       year: this.bookForm.get("year")?.value,
       category: this.selectedCategory,
       author: this.selectedAuthor,
+      location: this.selectedLocation,
     };
     if (!this.editMode) {
       if (this.bookForm.valid) {
-        if (this.selectedCategory == 0 || this.selectedCategory == undefined || this.selectedAuthor == 0 || this.selectedAuthor == undefined) {
+        if (this.selectedCategory == 0 || this.selectedCategory == undefined || this.selectedAuthor == 0 || this.selectedAuthor == undefined || this.selectedLocation == 0 || this.selectedLocation == undefined) {
           Notify.warning("Please select category and author");
           this.getBooks();
         } else {
-        console.log('registering', book);
         this.errorText = "";
         this.booksService.addBook(book).subscribe(
           (res: any) => {
@@ -118,6 +122,10 @@ export class ListBooksComponent implements OnInit {
     this.selectedCategory = event.target.value;
   }
 
+  changeLocation(event: any) {
+    this.selectedLocation = event.target.value;
+  }
+
 
   getBook(id: any) {
     this.booksService.getBook(id).subscribe((data) => {
@@ -129,9 +137,11 @@ export class ListBooksComponent implements OnInit {
         description: data[0].description,
         isbn: data[0].isbn,
         cover: data[0].cover,
+        digital: data[0].isbn,
         year: data[0].year,
         category_id: data[0].category_id,
         author_id: data[0].author_id,
+        location_id: data[0].location_id,
       });
       this.id = data[0].id;
     }),
@@ -170,9 +180,20 @@ export class ListBooksComponent implements OnInit {
     this.getBooks();
     this.getCategories();
     this.getAuthors();
+    this.getLocation();
   }
 
 
+  //Get data to fill selects
+  getLocation() {
+    this.addonsService.getLocation().subscribe((data) => {
+      this.location =  data;
+      this.location.unshift({id: 0, name: 'Select Location'});
+    }),
+      (error) => {
+        console.error(error, "Error");
+      };
+  }
   getCategories() {
     this.addonsService.getCategories().subscribe((data) => {
       this.categories =  data;
@@ -182,7 +203,6 @@ export class ListBooksComponent implements OnInit {
         console.error(error, "Error");
       };
   }
-
   getAuthors() {
     this.addonsService.getAuthors().subscribe((data) => {
       this.authors = data;
@@ -193,6 +213,7 @@ export class ListBooksComponent implements OnInit {
       };
   }
 
+  //Get all books
   getBooks() {
     this.booksService.getBooks().subscribe((data) => {
       this.books = data;

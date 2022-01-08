@@ -30,12 +30,20 @@
                   bookForm.get('isbn')?.hasError('required') &&
                   bookForm.get('isbn')?.touched
               }" formControlName="isbn" type="text" name="isbn" class="form-control m-r" id="isbn"
-            placeholder="ISBN" /><input [ngClass]="{
+            placeholder="ISBN" />
+            <input [ngClass]="{
                 'outline-error':
                   bookForm.get('cover')?.hasError('required') &&
                   bookForm.get('cover')?.touched
               }" formControlName="cover" type="text" name="cover" class="form-control m-r" id="cover"
-            placeholder="Link of Cover image" /><input [ngClass]="{
+            placeholder="Link of Cover image" />
+            <input [ngClass]="{
+              'outline-error':
+                bookForm.get('digital')?.hasError('required') &&
+                bookForm.get('digital')?.touched
+            }" formControlName="digital" type="text" name="digital" class="form-control m-r" id="digital"
+          placeholder="Link of Digital version" />
+            <input [ngClass]="{
                 'outline-error':
                   bookForm.get('year')?.hasError('required') &&
                   bookForm.get('year')?.touched
@@ -46,17 +54,22 @@
                 'outline-error':
                   bookForm.get('category')?.hasError('required') &&
                   bookForm.get('category')?.touched
-              }" name="category" class="form-control m-r" (change)="changeCategory($event)"
-            id="category">
+              }" name="category" class="form-control m-r" (change)="changeCategory($event)" id="category">
             <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
           </select>
           <select [ngClass]="{
                 'outline-error':
                   bookForm.get('author')?.hasError('required') &&
                   bookForm.get('author')?.touched
-              }" name="author" class="form-control m-r" (change)="changeAuthor($event)"
-            id="author">
+              }" name="author" class="form-control m-r" (change)="changeAuthor($event)" id="author">
             <option *ngFor="let author of authors" [value]="author.id">{{ author.name }}</option>
+          </select>
+          <select [ngClass]="{
+            'outline-error':
+              bookForm.get('location')?.hasError('required') &&
+              bookForm.get('location')?.touched
+          }" name="location" class="form-control m-r" (change)="changeLocation($event)" id="location">
+            <option *ngFor="let loc of location" [value]="loc.id">{{ loc.name }}</option>
           </select>
           <textarea [ngClass]="{
               'outline-error':

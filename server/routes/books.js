@@ -38,22 +38,23 @@ router.post("/", async (req, res) => {
     description,
     isbn,
     cover,
+    digital,
     year,
     category,
     author,
+    location
   } = req.body);
-  console.log('Entro al book', book);
   mysqlConnection.query(
-    "SELECT * FROM books WHERE isbn=?",
-    [isbn],
+    "SELECT * FROM books WHERE isbn=? OR title=?",
+    [isbn, title],
     (err, rows, fields) => {
       if (!err) {
         if (rows.length > 0) {
           res.json({msg: "The book already exists", status: 400});
         } else {
           mysqlConnection.query(
-            "INSERT INTO books (title, description, isbn, cover, year, category_id, author_id) VALUES (?,?,?,?,?,?,?)",
-            [title, description, isbn, cover, year, category, author],
+            "INSERT INTO books (title, description, isbn, cover, digital, year, category_id, author_id, location_id) VALUES (?,?,?,?,?,?,?,?,?)",
+            [title, description, isbn, cover, digital, year, category, author, location],
             async (err, rows, fields) => {
               if (!err) {
                 res.json({ msg: "The Book created successfully", status: 200 });
@@ -75,15 +76,18 @@ router.put("/", async (req, res) => {
   const book = ({
     id,
     title,
+    description,
     isbn,
     cover,
+    digital,
     year,
     category_id,
     author_id,
+    location_id
   } = req.body);
   mysqlConnection.query(
-    "UPDATE books SET title=?, description=?, isbn=?, cover=?, year=?, category_id=?, author_id=? where id=?",
-    [title, description, isbn, cover, year, category_id, author_id, id],
+    "UPDATE books SET title=?, description=?, isbn=?, cover=?, digital=? year=?, category_id=?, author_id=?, location_id=? where id=?",
+    [title, description, isbn, cover, digital, year, category_id, author_id, location_id, id],
     (err, rows, fields) => {
       if (!err) {
         res.json(rows);

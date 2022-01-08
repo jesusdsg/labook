@@ -22,4 +22,14 @@ router.get("/authors", (req, res) => {
     });
   });
 
+router.get("/location", (req, res) => {
+    mysqlConnection.query("SELECT * FROM location", (err, rows, fields) => {
+      if (!err) {
+        res.json(rows);
+      } else {
+        console.log(err);
+      }
+    });
+  });
+
 module.exports = router;

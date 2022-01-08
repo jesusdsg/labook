@@ -34,19 +34,29 @@ create table authors(
     primary key (id)
 );
 
+create table location(
+	id int not null auto_increment,
+    name varchar(20),
+    primary key (id)
+);
+
 create table books (
 	id int not null auto_increment PRIMARY KEY,
-	title varchar(50) default null UNIQUE,
+	title varchar(50) default null,
     description varchar(150) default null,
-    isbn varchar(50) default null UNIQUE,
+    isbn varchar(50) default null,
     cover varchar(150) default null,
+    digital varchar(150) default null,
     year timestamp,
     category_id int,
     author_id int,
+    location_id int,
     created timestamp default CURRENT_TIMESTAMP,
     updated timestamp default CURRENT_TIMESTAMP,
+    borrowed int(1) default 0,),
     CONSTRAINT fk_author_id FOREIGN KEY (author_id) references authors(id),
-    CONSTRAINT fk_category_id FOREIGN KEY (category_id) references categories(id)
+    CONSTRAINT fk_category_id FOREIGN KEY (category_id) references categories(id),
+    CONSTRAINT fk_location_id FOREIGN KEY (location_id) references location(id)
 );
 
 
@@ -64,3 +74,7 @@ INSERT INTO `authors`(`name`) VALUES ('Neville Goddard');
 INSERT INTO `categories`(`name`) VALUES ('Terror');
 INSERT INTO `categories`(`name`) VALUES ('Drama');
 INSERT INTO `categories`(`name`) VALUES ('Fantasy');
+
+INSERT INTO `location`(`name`) VALUES ('Locker 1');
+INSERT INTO `location`(`name`) VALUES ('Locker 2');
+INSERT INTO `location`(`name`) VALUES ('Locker 3');

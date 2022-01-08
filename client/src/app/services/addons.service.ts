@@ -17,4 +17,8 @@ export class AddonsService {
   getAuthors(): Observable<any> {
     return this.http.get(this.uri + '/' + 'authors');
   }
+
+  getLocation(): Observable<any> {
+    return this.http.get(this.uri + '/' + 'location');
+  }
 }

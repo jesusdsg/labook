@@ -22,6 +22,7 @@ import { ChartContainerComponent } from './components/functions/chart-container/
 import { ListReadersComponent } from './components/functions/list-readers/list-readers.component';
 import { MainPageComponent } from './components/functions/main-page/main-page.component';
 import { ListBooksComponent } from './components/functions/list-books/list-books.component';
+import { BooksContainerComponent } from './components/functions/books-container/books-container.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ListBooksComponent } from './components/functions/list-books/list-books
     ChartContainerComponent,
     ListReadersComponent,
     MainPageComponent,
-    ListBooksComponent
+    ListBooksComponent,
+    BooksContainerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<div>
+    <div>
+        <div class="m-b-1 m-t-1 flow-root">
+            <h2 class="left">Books List</h2>
+        </div>
+        <div class="right m-b-1">
+            <input type="text" class="form-control" (input)="filterBooks($event)" placeholder="Search.."
+                style="margin: 0;" />
+        </div>
+    </div>
+    </div>
+    
+    <div class="book-container" *ngFor="let book of books">
+        <div class="book-container__book">
+            <img src="{{book.cover}}" class="poster" alt="">
+            <h1>{{book.title}}</h1>
+            <p class="description">{{book.author_name}}</p>
+            <p class="description">{{book.location_name}}</p>
+            <div class="borrowed" [ngClass]="book.borrowed == 0 ? 'isBorrowed' : 'isnotBorrowed'">
+                {{book.borrowed == 1 ? 'Borrowed' : 'Available'}}
+            </div>
+        </div>
+    </div>
